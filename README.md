@@ -96,3 +96,11 @@ Job-portal/
 ├── mvnw
 ├── mvnw.cmd
 └── README.md
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Job Portal Home Page](screenshots/home.png)
