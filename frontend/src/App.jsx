@@ -167,61 +167,56 @@ const fetchMyApplications = async () => {
   }
 };
   // =========================
-  // LOGIN
-  // =========================
+ // LOGIN
+// =========================
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  try {
+    const response = await fetch(`${API}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: loginForm.email,
+        password: loginForm.password,
+      }),
+    });
 
-    try {
-      const response = await fetch(`${API}/users/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: loginForm.email,
-          password: loginForm.password,
-        }),
-      });
+    const data = await response.json();
 
-      const data = await response.json();
+    console.log("Login response:", data);
 
-      console.log("Login response:", data);
-
-      if (!response.ok) {
-        throw new Error(
-          data.message || "Invalid email or password"
-        );
-      }
-
-      const user = {
-        id: data.id,
-        name: data.name,
-        email: data.email,
-        role: String(data.role || "USER").toUpperCase(),
-      };
-
-      setCurrentUser(user);
-
-      setLoginForm({
-        email: "",
-        password: "",
-      });
-
-      alert("Login successful!");
-
-      setPage("home");
-    } catch (error) {
-      console.error("Login error:", error);
-      alert(error.message);
+    if (!response.ok) {
+      throw new Error(
+        data.message || "Invalid email or password"
+      );
     }
-  };
 
-  // =========================
-  // REGISTER
-  // =========================
+    const user = {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      role: String(data.role || "USER").toUpperCase(),
+    };
 
+    setCurrentUser(user);
+
+    setLoginForm({
+      email: "",
+      password: "",
+    });
+
+    alert("Login successful!");
+
+    setPage("home");
+
+  } catch (error) {
+    console.error("Login error:", error);
+    alert(error.message);
+  }
+};
   const handleRegister = async (e) => {
     e.preventDefault();
 
