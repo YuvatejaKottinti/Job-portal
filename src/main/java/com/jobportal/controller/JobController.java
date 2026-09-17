@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jobportal.model.Job;
 import com.jobportal.service.JobService;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/jobs")
 public class JobController {
