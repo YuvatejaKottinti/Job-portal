@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const API = "http://localhost:8080/api";
+const API = "https://job-portal-yaj9.onrender.com/api";
 
 function App() {
   const [page, setPageState] = useState(
